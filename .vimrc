@@ -3,19 +3,21 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-syntastic/syntastic'
-Plug 'jiangmiao/auto-pairs'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'edkolev/tmuxline.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'jordcart/seoul256.vim'
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'valloric/youcompleteme'
 
 call plug#end()
 
 "theme"
   set t_Co=256
   syntax on
-  colorscheme gruvbox 
   set bg=dark
+  let g:seoul256_background = 234 
+  colorscheme seoul256 
+  let g:lightline = { 'colorscheme': 'seoul256', }
 
 "spaces and tabs"
   set softtabstop=4
@@ -32,7 +34,8 @@ call plug#end()
 
 "other"
   set hlsearch
-  set timeoutlen=50
+  set timeoutlen=1000
+  set ttimeoutlen=5
   set ai
 
 "rebinds"
@@ -77,4 +80,3 @@ let g:airline_symbols.linenr = ''
 
 " fzf
 let g:fzf_preview_window = ['right:50%', 'ctrl-/']
-
