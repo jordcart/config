@@ -3,19 +3,21 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-syntastic/syntastic'
-Plug 'jiangmiao/auto-pairs'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'edkolev/tmuxline.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'jordcart/seoul256.vim'
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'valloric/youcompleteme'
 
 call plug#end()
 
 "theme"
   set t_Co=256
   syntax on
-  colorscheme gruvbox 
   set bg=dark
+  let g:seoul256_background = 234 
+  colorscheme seoul256 
+  let g:lightline = { 'colorscheme': 'seoul256', }
 
 "spaces and tabs"
   set softtabstop=4
@@ -32,7 +34,8 @@ call plug#end()
 
 "other"
   set hlsearch
-  set timeoutlen=50
+  set timeoutlen=1000
+  set ttimeoutlen=5
   set ai
 
 "rebinds"
@@ -43,6 +46,11 @@ nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 "syntastic"
 let g:syntastic_c_checkers=['gcc', 'make']
 
+"auto closing {}"
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+
 " air-line
 let g:airline_powerline_fonts=1
 let g:airline_theme='gruvbox'
@@ -52,29 +60,8 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-
-" airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-
 " fzf
 let g:fzf_preview_window = ['right:50%', 'ctrl-/']
 
+"ycm"
+let g:ycm_show_diagnostics_ui = 0
